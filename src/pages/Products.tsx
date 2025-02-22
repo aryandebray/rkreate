@@ -6,7 +6,7 @@ const Products = () => {
     {
       name: "Basa Fillet",
       description: "Premium quality Basa fillets, perfectly cleaned and prepared.",
-      image: "https://placehold.co/400x300",
+      image: "/lovable-uploads/b71f10e7-0ca1-4b64-b282-fe8f68e28280.png",
       details: ["Fresh and clean", "Carefully processed", "Premium quality"],
     },
     {
