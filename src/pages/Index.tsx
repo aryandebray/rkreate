@@ -20,12 +20,12 @@ const Index = () => {
             >
               <span className="text-rkpurple font-medium">Welcome to RKreate</span>
               <h1 className="text-5xl md:text-6xl font-bold mt-4 mb-6">
-                Premium Seafood <br />
+                Premium Food Products <br />
                 <span className="text-rkpurple">For Your Business</span>
               </h1>
               <p className="text-gray-600 text-lg mb-8">
                 Supplying restaurants and cafes with the finest quality Basa, Prawns, 
-                and premium seafood products. Experience excellence in every delivery.
+                Mutton, and other premium food products. Experience excellence in every delivery.
               </p>
               <Link
                 to="/products"
@@ -58,7 +58,7 @@ const Index = () => {
               Our Premium Products
             </motion.h2>
             <p className="text-gray-600">
-              Discover our range of high-quality seafood products
+              Discover our range of high-quality food products
             </p>
           </div>
 
