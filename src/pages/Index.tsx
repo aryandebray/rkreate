@@ -9,9 +9,17 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-[90vh] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-rkgreen/10 to-transparent" />
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img 
+            src="/lovable-uploads/a129250c-6c16-4908-95e1-35b33017b32b.png" 
+            alt="Background pattern"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" />
+        </div>
         
-        <div className="container mx-auto px-4 h-full flex items-center">
+        <div className="container mx-auto px-4 h-full flex items-center relative z-10">
           <div className="max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -37,16 +45,20 @@ const Index = () => {
             </motion.div>
           </div>
         </div>
-
-        {/* Animated Wave Background */}
-        <div className="absolute bottom-0 left-0 right-0 h-32">
-          <div className="absolute inset-0 bg-wave animate-wave opacity-10" />
-        </div>
       </section>
 
       {/* Featured Products Preview */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-white relative">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="/lovable-uploads/a129250c-6c16-4908-95e1-35b33017b32b.png" 
+            alt="Background pattern"
+            className="w-full h-full object-cover rotate-180"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent" />
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -66,12 +78,12 @@ const Index = () => {
             {[
               {
                 title: "Basa Fillet",
-                image: "https://placehold.co/400x300",
+                image: "/lovable-uploads/b71f10e7-0ca1-4b64-b282-fe8f68e28280.png",
                 description: "Premium quality Basa fillets",
               },
               {
                 title: "Fresh Prawns",
-                image: "https://placehold.co/400x300",
+                image: "/lovable-uploads/76c421e0-713b-4182-9f3f-5d1d6bab568d.png",
                 description: "Succulent and fresh prawns",
               },
               {
@@ -86,7 +98,7 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
                 <img
                   src={product.image}
