@@ -23,9 +23,9 @@ const Products = () => {
     },
     {
       name: "Fish Fry",
-      description: "Ready-to-fry fish preparations with perfect seasoning.",
-      image: "https://placehold.co/400x300",
-      details: ["Pre-seasoned", "Easy to cook", "Traditional recipe"],
+      description: "Crispy, golden-brown fish fry with a perfectly seasoned coating and tender, flaky fish inside. Each piece is hand-breaded and fried to perfection.",
+      image: "/lovable-uploads/0c31930b-ad09-46ea-91e1-43e534807335.png",
+      details: ["Crispy coating", "Perfectly seasoned", "Tender & flaky"],
     },
     {
       name: "Fish Cheese Balls",
