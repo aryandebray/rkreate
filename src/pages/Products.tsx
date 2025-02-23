@@ -29,9 +29,9 @@ const Products = () => {
     },
     {
       name: "Fish Cheese Balls",
-      description: "Delicious fish cheese balls, perfect as appetizers.",
-      image: "https://placehold.co/400x300",
-      details: ["Ready to fry", "Perfect blend", "Premium ingredients"],
+      description: "Crispy on the outside, creamy and cheesy on the inside. Our signature fish cheese balls are made with premium fish and melted cheese.",
+      image: "/lovable-uploads/c445705d-908d-4fe2-83d0-39bc4282502c.png",
+      details: ["Crispy coating", "Melted cheese filling", "Premium fish blend"],
     },
   ];
 
