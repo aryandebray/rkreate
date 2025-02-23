@@ -1,41 +1,62 @@
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+
 const Contact = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: ""
   });
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here we would typically handle the form submission
-    toast({
-      title: "Thank you for your message!",
-      description: "We will get back to you soon."
-    });
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: ""
-    });
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Thank you for your message!",
+        description: "We will get back to you soon.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Error sending message",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {
-      name,
-      value
-    } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
+
   return <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         <motion.div initial={{
@@ -128,12 +149,14 @@ const Contact = () => {
                   <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rkgreen focus:border-transparent outline-none transition-shadow resize-none" required />
                 </div>
 
-                <motion.button whileHover={{
-                scale: 1.02
-              }} whileTap={{
-                scale: 0.98
-              }} type="submit" className="w-full bg-rkpurple text-white py-3 px-6 rounded-lg hover:bg-rkpurple-dark transition-colors duration-200">
-                  Send Message
+                <motion.button 
+                  whileHover={{scale: 1.02}} 
+                  whileTap={{scale: 0.98}} 
+                  type="submit" 
+                  className="w-full bg-rkpurple text-white py-3 px-6 rounded-lg hover:bg-rkpurple-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </motion.button>
               </form>
             </div>
@@ -142,4 +165,5 @@ const Contact = () => {
       </div>
     </div>;
 };
+
 export default Contact;
