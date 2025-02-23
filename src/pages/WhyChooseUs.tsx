@@ -38,7 +38,7 @@ const WhyChooseUs = () => {
         duration: 0.6
       }} className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Why Choose Us</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">Our mission- &quot;Responsibly sourced &amp; supply best quality foods.&quot;</p>
+          <p className="max-w-2xl mx-auto text-purple-950 font-semibold text-xl">Our mission- &quot;Responsibly sourced &amp; supply best quality foods.&quot;</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
