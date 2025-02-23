@@ -88,8 +88,8 @@ const Index = () => {
               },
               {
                 title: "Fish Cheese Balls",
-                image: "https://placehold.co/400x300",
-                description: "Ready-to-fry delicacies",
+                image: "/lovable-uploads/c445705d-908d-4fe2-83d0-39bc4282502c.png",
+                description: "Crispy outside, creamy cheese inside",
               },
             ].map((product, index) => (
               <motion.div
