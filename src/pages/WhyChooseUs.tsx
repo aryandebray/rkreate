@@ -76,7 +76,7 @@ const WhyChooseUs = () => {
         duration: 0.6
       }} viewport={{
         once: true
-      }} className="mt-20 rounded-xl shadow-lg p-8 text-center bg-emerald-950 hover:bg-emerald-800">
+      }} className="mt-20 rounded-xl shadow-lg p-8 text-center bg-slate-50">
           <h2 className="text-2xl font-bold mb-8">Trusted by Businesses</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[{
