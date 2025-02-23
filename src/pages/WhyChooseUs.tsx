@@ -55,7 +55,7 @@ const WhyChooseUs = () => {
             delay: index * 0.1
           }} viewport={{
             once: true
-          }} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          }} className="rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-emerald-300 hover:bg-emerald-200">
                 <div className="bg-rkgreen/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                   <Icon className="text-rkpurple h-6 w-6" />
                 </div>
