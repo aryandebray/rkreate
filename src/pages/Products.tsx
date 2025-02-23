@@ -17,9 +17,9 @@ const Products = () => {
     },
     {
       name: "Mutton",
-      description: "High-quality mutton, perfect for various cuisines.",
-      image: "https://placehold.co/400x300",
-      details: ["Fresh cut", "Premium quality", "Carefully selected"],
+      description: "Premium quality mutton cuts, perfectly marbled and expertly butchered for maximum flavor and tenderness.",
+      image: "/lovable-uploads/5c28b27f-b78a-4ec5-be0b-f84152fb267d.png",
+      details: ["Fresh cut", "Premium marbling", "Expertly butchered"],
     },
     {
       name: "Fish Fry",
