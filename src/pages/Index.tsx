@@ -1,7 +1,9 @@
+
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+
 const Index = () => {
   return <div className="min-h-screen">
       {/* Hero Section */}
@@ -15,14 +17,28 @@ const Index = () => {
         <div className="container mx-auto px-4 h-full flex items-center relative z-10">
           <div className="max-w-2xl">
             <motion.div initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.8
-          }}>
+              opacity: 0,
+              y: 20
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} transition={{
+              duration: 0.8
+            }}>
+              {/* Logo */}
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="mb-8"
+              >
+                <img 
+                  src="/lovable-uploads/3c02501b-3f0e-493f-9506-3c983e7f2605.png" 
+                  alt="RKreate Logo" 
+                  className="h-20 mb-6"
+                />
+              </motion.div>
+              
               <span className="text-rkpurple font-medium">Welcome to RKreate Traders!</span>
               <h1 className="text-5xl md:text-6xl font-bold mt-4 mb-6">
                 Premium Food Products <br />
@@ -104,4 +120,5 @@ const Index = () => {
       </section>
     </div>;
 };
+
 export default Index;
