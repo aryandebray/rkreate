@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -39,7 +38,6 @@ const Index = () => {
                 />
               </motion.div>
               
-              <span className="text-rkpurple font-medium">Welcome to RKreate Traders!</span>
               <h1 className="text-5xl md:text-6xl font-bold mt-4 mb-6">
                 Premium Food Products <br />
                 <span className="text-rkpurple">For Your Business</span>
