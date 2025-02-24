@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -114,6 +114,32 @@ const Index = () => {
                 </div>
               </motion.div>)}
           </div>
+        </div>
+      </section>
+
+      {/* Connect With Us Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-3xl font-bold mb-6">Connect With Us</h2>
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+              Have questions about our products or services? We'd love to hear from you. 
+              Reach out to us for personalized assistance.
+            </p>
+            <Link 
+              to="/contact" 
+              className="inline-flex items-center space-x-2 bg-rkpurple text-white px-6 py-3 rounded-lg hover:bg-rkpurple-dark transition-colors duration-200"
+            >
+              <MessageSquare className="h-5 w-5" />
+              <span>Get in Touch</span>
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>;
