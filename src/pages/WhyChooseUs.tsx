@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Shield, Truck, Award, Clock, Users, HeartHandshake } from "lucide-react";
 
@@ -78,7 +79,7 @@ const WhyChooseUs = () => {
           duration: 0.6
         }} viewport={{
           once: true
-        }} className="mt-20 rounded-xl shadow-lg p-8 text-center bg-slate-50">
+        }} className="mt-20 rounded-xl shadow-lg p-8 text-center bg-emerald-200">
           <h2 className="text-2xl font-bold mb-6">About Us</h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-gray-700 leading-relaxed">
