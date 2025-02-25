@@ -10,7 +10,7 @@ const Products = () => {
       details: ["Fresh and clean", "Carefully processed", "Premium quality"],
     },
     {
-      name: "Fresh Prawns",
+      name: "Prawns",
       description: "Succulent and fresh prawns sourced from the finest locations.",
       image: "/lovable-uploads/76c421e0-713b-4182-9f3f-5d1d6bab568d.png",
       details: ["Fresh catch", "Carefully sorted", "Premium size"],

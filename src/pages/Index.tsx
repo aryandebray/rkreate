@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, MessageSquare } from "lucide-react";
@@ -88,7 +89,7 @@ const Index = () => {
             image: "/lovable-uploads/b71f10e7-0ca1-4b64-b282-fe8f68e28280.png",
             description: "Premium quality Basa fillets"
           }, {
-            title: "Fresh Prawns",
+            title: "Prawns",
             image: "/lovable-uploads/76c421e0-713b-4182-9f3f-5d1d6bab568d.png",
             description: "Succulent and fresh prawns"
           }, {
