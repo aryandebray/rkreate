@@ -29,14 +29,14 @@ const Contact = () => {
 
       if (submissionError) throw submissionError;
 
-      // Then, sync to Google Sheets
-      const { error: syncError } = await supabase.functions.invoke('sync-contact-to-sheets', {
+      // Save to local file
+      const { error: fileError } = await supabase.functions.invoke('save-contact-to-file', {
         body: { ...formData, created_at: submissionData.created_at }
       });
 
-      if (syncError) throw syncError;
+      if (fileError) throw fileError;
 
-      // Finally, send email notification
+      // Send email notification
       const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
         body: formData
       });
