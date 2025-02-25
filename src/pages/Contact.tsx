@@ -20,11 +20,28 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+      // First, store in Supabase
+      const { data: submissionData, error: submissionError } = await supabase
+        .from('contact_submissions')
+        .insert([formData])
+        .select()
+        .single();
+
+      if (submissionError) throw submissionError;
+
+      // Then, sync to Google Sheets
+      const { error: syncError } = await supabase.functions.invoke('sync-contact-to-sheets', {
+        body: { ...formData, created_at: submissionData.created_at }
+      });
+
+      if (syncError) throw syncError;
+
+      // Finally, send email notification
+      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
         body: formData
       });
 
-      if (error) throw error;
+      if (emailError) throw emailError;
 
       toast({
         title: "Thank you for your message!",
@@ -38,7 +55,7 @@ const Contact = () => {
         message: ""
       });
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.error("Error processing submission:", error);
       toast({
         title: "Error sending message",
         description: "Please try again later.",
