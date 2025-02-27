@@ -1,12 +1,12 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-
 const Contact = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -14,44 +14,44 @@ const Contact = () => {
     phone: "",
     message: ""
   });
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       // First store in database
-      const { error: dbError } = await supabase
-        .from('contact_submissions')
-        .insert([formData]);
-
+      const {
+        error: dbError
+      } = await supabase.from('contact_submissions').insert([formData]);
       if (dbError) {
         console.error("Database error:", dbError);
       }
 
       // Then trigger notifications
-      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+      const {
+        error: emailError
+      } = await supabase.functions.invoke('send-contact-email', {
         body: formData
       });
-
       if (emailError) {
         console.error("Email error:", emailError);
       }
 
       // Save to file as backup
-      const { error: fileError } = await supabase.functions.invoke('save-contact-to-file', {
-        body: { ...formData, created_at: new Date().toISOString() }
+      const {
+        error: fileError
+      } = await supabase.functions.invoke('save-contact-to-file', {
+        body: {
+          ...formData,
+          created_at: new Date().toISOString()
+        }
       });
-
       if (fileError) {
         console.error("File error:", fileError);
       }
-
       toast({
         title: "Thank you for your message!",
-        description: "We will get back to you soon.",
+        description: "We will get back to you soon."
       });
-
       setFormData({
         name: "",
         email: "",
@@ -63,23 +63,24 @@ const Contact = () => {
       toast({
         title: "Error sending message",
         description: "Please try again later.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    const {
+      name,
+      value
+    } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
-
   return <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 bg-emerald-200">
         <motion.div initial={{
         opacity: 0,
         y: 20
@@ -170,13 +171,11 @@ const Contact = () => {
                   <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rkgreen focus:border-transparent outline-none transition-shadow resize-none" required />
                 </div>
 
-                <motion.button 
-                  whileHover={{scale: 1.02}} 
-                  whileTap={{scale: 0.98}} 
-                  type="submit" 
-                  className="w-full bg-rkpurple text-white py-3 px-6 rounded-lg hover:bg-rkpurple-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={isSubmitting}
-                >
+                <motion.button whileHover={{
+                scale: 1.02
+              }} whileTap={{
+                scale: 0.98
+              }} type="submit" className="w-full bg-rkpurple text-white py-3 px-6 rounded-lg hover:bg-rkpurple-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed" disabled={isSubmitting}>
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </motion.button>
               </form>
@@ -186,5 +185,4 @@ const Contact = () => {
       </div>
     </div>;
 };
-
 export default Contact;
