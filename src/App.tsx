@@ -11,9 +11,6 @@ import WhyChooseUs from "./pages/WhyChooseUs";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
-// Import CSS to apply global styles
-import "./App.css";
-
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -22,19 +19,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="min-h-screen bg-gray-50 relative">
-          {/* Background Image with Overlay */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
-            <img 
-              src="/lovable-uploads/a129250c-6c16-4908-95e1-35b33017b32b.png" 
-              alt="Background pattern" 
-              className="w-full h-full object-cover opacity-30" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" />
-          </div>
-          
+        <div className="min-h-screen bg-gray-50">
           <Navigation />
-          <main className="pt-20 relative z-10">
+          <main className="pt-20">
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/products" element={<Products />} />

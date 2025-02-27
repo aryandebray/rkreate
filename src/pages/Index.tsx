@@ -1,36 +1,45 @@
+
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
+
 const Index = () => {
   return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-[90vh] overflow-hidden">
-        <div className="container mx-auto px-4 h-full flex items-center relative z-10 rounded-none">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img src="/lovable-uploads/a129250c-6c16-4908-95e1-35b33017b32b.png" alt="Background pattern" className="w-full h-full object-cover opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" />
+        </div>
+        
+        <div className="container mx-auto px-4 h-full flex items-center relative z-10">
           <div className="max-w-2xl">
             <motion.div initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.8
-          }}>
-              {/* Logo */}
-              <motion.div initial={{
-              scale: 0.8,
-              opacity: 0
+              opacity: 0,
+              y: 20
             }} animate={{
-              scale: 1,
-              opacity: 1
+              opacity: 1,
+              y: 0
             }} transition={{
-              duration: 0.5
-            }} className="mb-8">
-                <img src="/lovable-uploads/3c02501b-3f0e-493f-9506-3c983e7f2605.png" alt="RKreate Logo" className="h-20 mb-6" />
+              duration: 0.8
+            }}>
+              {/* Logo */}
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="mb-8"
+              >
+                <img 
+                  src="/lovable-uploads/3c02501b-3f0e-493f-9506-3c983e7f2605.png" 
+                  alt="RKreate Logo" 
+                  className="h-20 mb-6"
+                />
               </motion.div>
               
-              <h1 className="text-5xl md:text-6xl font-bold mt-4 mb-6 text-left">
+              <h1 className="text-5xl md:text-6xl font-bold mt-4 mb-6">
                 Premium Food Products <br />
                 <span className="text-rkpurple">For Your Business</span>
               </h1>
@@ -48,7 +57,12 @@ const Index = () => {
       </section>
 
       {/* Featured Products Preview */}
-      <section className="py-20 bg-white/80 backdrop-blur-sm relative">        
+      <section className="py-20 bg-white relative">
+        <div className="absolute inset-0 opacity-10">
+          <img src="/lovable-uploads/a129250c-6c16-4908-95e1-35b33017b32b.png" alt="Background pattern" className="w-full h-full object-cover rotate-180" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent" />
+        </div>
+        
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <motion.h2 initial={{
@@ -105,25 +119,24 @@ const Index = () => {
       </section>
 
       {/* Connect With Us Section */}
-      <section className="py-16 bg-gray-50/70 backdrop-blur-sm">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6
-        }} viewport={{
-          once: true
-        }} className="text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
             <h2 className="text-3xl font-bold mb-6">Connect With Us</h2>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
               Have questions about our products or services? We'd love to hear from you. 
               Reach out to us for personalized assistance.
             </p>
-            <Link to="/contact" className="inline-flex items-center space-x-2 bg-rkpurple text-white px-6 py-3 rounded-lg hover:bg-rkpurple-dark transition-colors duration-200">
+            <Link 
+              to="/contact" 
+              className="inline-flex items-center space-x-2 bg-rkpurple text-white px-6 py-3 rounded-lg hover:bg-rkpurple-dark transition-colors duration-200"
+            >
               <MessageSquare className="h-5 w-5" />
               <span>Get in Touch</span>
             </Link>
@@ -132,4 +145,5 @@ const Index = () => {
       </section>
     </div>;
 };
+
 export default Index;
