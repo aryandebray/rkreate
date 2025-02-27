@@ -1,12 +1,12 @@
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MessageSquare, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+
 const Contact = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -14,44 +14,44 @@ const Contact = () => {
     phone: "",
     message: ""
   });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
     try {
       // First store in database
-      const {
-        error: dbError
-      } = await supabase.from('contact_submissions').insert([formData]);
+      const { error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert([formData]);
+
       if (dbError) {
         console.error("Database error:", dbError);
       }
 
       // Then trigger notifications
-      const {
-        error: emailError
-      } = await supabase.functions.invoke('send-contact-email', {
+      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
         body: formData
       });
+
       if (emailError) {
         console.error("Email error:", emailError);
       }
 
       // Save to file as backup
-      const {
-        error: fileError
-      } = await supabase.functions.invoke('save-contact-to-file', {
-        body: {
-          ...formData,
-          created_at: new Date().toISOString()
-        }
+      const { error: fileError } = await supabase.functions.invoke('save-contact-to-file', {
+        body: { ...formData, created_at: new Date().toISOString() }
       });
+
       if (fileError) {
         console.error("File error:", fileError);
       }
+
       toast({
         title: "Thank you for your message!",
-        description: "We will get back to you soon."
+        description: "We will get back to you soon.",
       });
+
       setFormData({
         name: "",
         email: "",
@@ -63,22 +63,21 @@ const Contact = () => {
       toast({
         title: "Error sending message",
         description: "Please try again later.",
-        variant: "destructive"
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {
-      name,
-      value
-    } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
+
   return <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         <motion.div initial={{
@@ -105,37 +104,42 @@ const Contact = () => {
                 <div className="space-y-6">
                   <motion.div whileHover={{
                   scale: 1.05
-                }} className="flex items-center space-x-4">
+                }} className="flex items-center justify-end space-x-4">
                     <div className="bg-rkgreen/10 p-3 rounded-full">
                       <Phone className="text-rkpurple h-6 w-6" />
                     </div>
-                    <div>
-                      <p className="font-medium text-left">Phone</p>
+                    <div className="text-right">
+                      <p className="font-medium">Phone</p>
                       <p className="text-gray-600">+91 9830908820</p>
                     </div>
                   </motion.div>
 
                   <motion.div whileHover={{
                   scale: 1.05
-                }} className="flex items-center space-x-4">
+                }} className="flex items-center justify-end space-x-4">
                     <div className="bg-rkgreen/10 p-3 rounded-full">
                       <Mail className="text-rkpurple h-6 w-6" />
                     </div>
-                    <div>
-                      <p className="font-medium text-left">Email</p>
+                    <div className="text-right">
+                      <p className="font-medium">Email</p>
                       <p className="text-gray-600">info@rkreate.net</p>
                     </div>
                   </motion.div>
 
                   <motion.div whileHover={{
                   scale: 1.05
-                }} className="flex items-center space-x-4">
+                }} className="flex items-center justify-end space-x-4">
                     <div className="bg-rkgreen/10 p-3 rounded-full">
                       <MapPin className="text-rkpurple h-6 w-6" />
                     </div>
-                    <div>
-                      <p className="font-medium text-left">Address</p>
-                      <a href="https://maps.google.com/?q=83D/1A,+Chetla+Road,+Kolkata+-+700027" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-rkpurple transition-colors">
+                    <div className="text-right">
+                      <p className="font-medium">Address</p>
+                      <a 
+                        href="https://maps.app.goo.gl/MbbQWTpykx6iwSM5A" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-gray-600 hover:text-rkpurple transition-colors"
+                      >
                         83D/1A, Chetla Road, Kolkata - 700027
                       </a>
                     </div>
@@ -143,12 +147,12 @@ const Contact = () => {
 
                   <motion.div whileHover={{
                   scale: 1.05
-                }} className="flex items-center space-x-4">
+                }} className="flex items-center justify-end space-x-4">
                     <div className="bg-rkgreen/10 p-3 rounded-full">
                       <MessageSquare className="text-rkpurple h-6 w-6" />
                     </div>
-                    <div>
-                      <p className="font-medium text-left">Business Hours</p>
+                    <div className="text-right">
+                      <p className="font-medium">Business Hours</p>
                       <p className="text-gray-600">Mon - Fri: 9am - 5pm</p>
                     </div>
                   </motion.div>
@@ -185,11 +189,13 @@ const Contact = () => {
                   <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rkgreen focus:border-transparent outline-none transition-shadow resize-none" required />
                 </div>
 
-                <motion.button whileHover={{
-                scale: 1.02
-              }} whileTap={{
-                scale: 0.98
-              }} type="submit" className="w-full bg-rkpurple text-white py-3 px-6 rounded-lg hover:bg-rkpurple-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed" disabled={isSubmitting}>
+                <motion.button 
+                  whileHover={{scale: 1.02}} 
+                  whileTap={{scale: 0.98}} 
+                  type="submit" 
+                  className="w-full bg-rkpurple text-white py-3 px-6 rounded-lg hover:bg-rkpurple-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </motion.button>
               </form>
@@ -199,4 +205,5 @@ const Contact = () => {
       </div>
     </div>;
 };
+
 export default Contact;
