@@ -8,12 +8,6 @@ const Index = () => {
   return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-[90vh] overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img src="/lovable-uploads/a129250c-6c16-4908-95e1-35b33017b32b.png" alt="Background pattern" className="w-full h-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" />
-        </div>
-        
         <div className="container mx-auto px-4 h-full flex items-center relative z-10">
           <div className="max-w-2xl">
             <motion.div initial={{
@@ -57,12 +51,7 @@ const Index = () => {
       </section>
 
       {/* Featured Products Preview */}
-      <section className="py-20 bg-white relative">
-        <div className="absolute inset-0 opacity-10">
-          <img src="/lovable-uploads/a129250c-6c16-4908-95e1-35b33017b32b.png" alt="Background pattern" className="w-full h-full object-cover rotate-180" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent" />
-        </div>
-        
+      <section className="py-20 bg-white/80 backdrop-blur-sm relative">        
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <motion.h2 initial={{
@@ -119,7 +108,7 @@ const Index = () => {
       </section>
 
       {/* Connect With Us Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50/70 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
