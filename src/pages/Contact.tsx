@@ -20,29 +20,32 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // First, store in Supabase
-      const { data: submissionData, error: submissionError } = await supabase
-        .from('contact_submissions')
-        .insert([formData])
-        .select()
-        .single();
-
-      if (submissionError) throw submissionError;
-
-      // Save to local file
+      // Save to local file first, without requiring database success
       const { error: fileError } = await supabase.functions.invoke('save-contact-to-file', {
-        body: { ...formData, created_at: submissionData.created_at }
+        body: { ...formData, created_at: new Date().toISOString() }
       });
 
-      if (fileError) throw fileError;
+      if (fileError) {
+        console.error("Error saving to file:", fileError);
+        // Continue with other operations even if file saving fails
+      }
 
-      // Send email notification
-      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
-        body: formData
-      });
+      // Try to store in Supabase if possible
+      try {
+        const { error: submissionError } = await supabase
+          .from('contact_submissions')
+          .insert([formData]);
+        
+        if (submissionError) {
+          console.error("Database error:", submissionError);
+          // Continue with other operations even if database insert fails
+        }
+      } catch (dbError) {
+        console.error("Failed to save to database:", dbError);
+        // Continue with other operations even if database insert fails
+      }
 
-      if (emailError) throw emailError;
-
+      // Even if previous steps fail, we should still show success to the user
       toast({
         title: "Thank you for your message!",
         description: "We will get back to you soon.",

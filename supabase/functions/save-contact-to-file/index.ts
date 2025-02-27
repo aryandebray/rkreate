@@ -16,6 +16,7 @@ interface ContactFormData {
 }
 
 serve(async (req) => {
+  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -24,15 +25,24 @@ serve(async (req) => {
     const formData: ContactFormData = await req.json();
     const timestamp = formData.created_at || new Date().toISOString();
     
-    // Instead of writing to a file (which might not have proper permissions),
-    // we'll log the submission and return success
-    console.log("New contact submission:", {
+    // Log submission details
+    console.log("Contact form submission received:", {
       timestamp,
-      ...formData
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message.substring(0, 50) + (formData.message.length > 50 ? "..." : "")
     });
 
     return new Response(
-      JSON.stringify({ success: true, message: "Submission processed" }),
+      JSON.stringify({ 
+        success: true, 
+        message: "Submission logged successfully",
+        data: {
+          timestamp,
+          name: formData.name
+        }
+      }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 200,
@@ -41,7 +51,10 @@ serve(async (req) => {
   } catch (error) {
     console.error("Error processing submission:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        success: false,
+        error: error.message || "Unknown error occurred"
+      }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 500,
