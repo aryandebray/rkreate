@@ -104,11 +104,11 @@ const Contact = () => {
                 <div className="space-y-6">
                   <motion.div whileHover={{
                   scale: 1.05
-                }} className="flex items-center space-x-4">
+                }} className="flex items-center justify-end space-x-4">
                     <div className="bg-rkgreen/10 p-3 rounded-full">
                       <Phone className="text-rkpurple h-6 w-6" />
                     </div>
-                    <div>
+                    <div className="text-right">
                       <p className="font-medium">Phone</p>
                       <p className="text-gray-600">+91 9830908820</p>
                     </div>
@@ -116,11 +116,11 @@ const Contact = () => {
 
                   <motion.div whileHover={{
                   scale: 1.05
-                }} className="flex items-center space-x-4">
+                }} className="flex items-center justify-end space-x-4">
                     <div className="bg-rkgreen/10 p-3 rounded-full">
                       <Mail className="text-rkpurple h-6 w-6" />
                     </div>
-                    <div>
+                    <div className="text-right">
                       <p className="font-medium">Email</p>
                       <p className="text-gray-600">info@rkreate.net</p>
                     </div>
@@ -128,14 +128,14 @@ const Contact = () => {
 
                   <motion.div whileHover={{
                   scale: 1.05
-                }} className="flex items-center space-x-4">
+                }} className="flex items-center justify-end space-x-4">
                     <div className="bg-rkgreen/10 p-3 rounded-full">
                       <MapPin className="text-rkpurple h-6 w-6" />
                     </div>
-                    <div>
+                    <div className="text-right">
                       <p className="font-medium">Address</p>
                       <a 
-                        href="https://maps.google.com/?q=83D/1A,+Chetla+Road,+Kolkata+-+700027" 
+                        href="https://maps.app.goo.gl/MbbQWTpykx6iwSM5A" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-gray-600 hover:text-rkpurple transition-colors"
@@ -147,11 +147,11 @@ const Contact = () => {
 
                   <motion.div whileHover={{
                   scale: 1.05
-                }} className="flex items-center space-x-4">
+                }} className="flex items-center justify-end space-x-4">
                     <div className="bg-rkgreen/10 p-3 rounded-full">
                       <MessageSquare className="text-rkpurple h-6 w-6" />
                     </div>
-                    <div>
+                    <div className="text-right">
                       <p className="font-medium">Business Hours</p>
                       <p className="text-gray-600">Mon - Fri: 9am - 5pm</p>
                     </div>
