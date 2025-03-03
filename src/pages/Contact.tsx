@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MessageSquare } from "lucide-react";
+import { Mail, Phone, MessageSquare, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -102,6 +102,25 @@ const Contact = () => {
               <div className="space-y-8">
                 <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
                 <div className="space-y-6">
+                  <motion.div whileHover={{
+                  scale: 1.05
+                }} className="flex items-center space-x-4">
+                    <div className="bg-rkgreen/10 p-3 rounded-full">
+                      <MapPin className="text-rkpurple h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="font-medium">Address</p>
+                      <a 
+                        href="https://maps.app.goo.gl/MbbQWTpykx6iwSM5A" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-gray-600 hover:text-rkpurple transition-colors"
+                      >
+                        83D/1A, Chetla Road, Kolkata - 700027
+                      </a>
+                    </div>
+                  </motion.div>
+
                   <motion.div whileHover={{
                   scale: 1.05
                 }} className="flex items-center space-x-4">
