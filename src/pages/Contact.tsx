@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MessageSquare, MapPin } from "lucide-react";
@@ -20,31 +19,16 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // First store in database
+      // Store in database
       const { error: dbError } = await supabase
         .from('contact_submissions')
-        .insert([formData]);
+        .insert([{
+          ...formData,
+          created_at: new Date().toISOString()
+        }]);
 
       if (dbError) {
-        console.error("Database error:", dbError);
-      }
-
-      // Then trigger notifications
-      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
-        body: formData
-      });
-
-      if (emailError) {
-        console.error("Email error:", emailError);
-      }
-
-      // Save to file as backup
-      const { error: fileError } = await supabase.functions.invoke('save-contact-to-file', {
-        body: { ...formData, created_at: new Date().toISOString() }
-      });
-
-      if (fileError) {
-        console.error("File error:", fileError);
+        throw new Error(`Database error: ${dbError.message}`);
       }
 
       toast({
@@ -62,7 +46,7 @@ const Contact = () => {
       console.error("Error processing submission:", error);
       toast({
         title: "Error sending message",
-        description: "Please try again later.",
+        description: error.message || "Please try again later.",
         variant: "destructive",
       });
     } finally {
